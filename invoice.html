@@ -302,7 +302,7 @@
      }
      
     .sg{
-        margin-top: 30px;
+        margin-top: 40px;
     }
    .sg h1{
        color: #3bff00;
@@ -383,6 +383,10 @@
                     
                     <p id="company_name">Your TopUp Center</p>
                     <p id="sl">Thank You, See You Agin! </p>
+                    <p> +880 1781-146747</p>
+                    <p>ffdiamondstorebd@gmail.com</p>
+                    <p>https://yourtopupcenter.github.io/</p>
+                    <p>facebook.com/yourtopupcenterofficial</p>
                    
                 </div>
             </div>
@@ -432,18 +436,15 @@
                 <button onclick="window.print()">Print Invoice</button>
             </div>
             
-        <div class="sign">
-            <h2>Your TopUp Center</h2>
-            <p>Sribordi, Sherpur, Mymensingh, Bangladesh</p>
-            <p>+880 1781-146747</p>
-            <p>ffdiamondstorebd@gmail</p>
-            <p>https://yourtopupcenter.github.io/</p>
-        </div>
+        
         
         <div class="sg">
             <h1> - Ali Hosen</h1>
             <p>Owner, CEO and Admin Of Your TopUp Center </p>
         </div>
+        
+        
+        <h3 style="text-align: center; color: #00ffea; margin-top: 40px;">[ Thanks You, See You Agin! ]</h3>
         </div>
         
         
@@ -499,7 +500,7 @@
             document.getElementById('invoice-total').textContent = `${totalPrice} BDT`;
 
             // Populate additional invoice information
-            document.getElementById('company_name').textContent = form.elements['customerName'].value;
+            document.getElementById('company_name').textContent = 'Your TopUp Center';
             document.getElementById('sl').textContent = 'Your Best Online Game Partner'; // This seems static, adjust if needed
             document.querySelector('.order-information p:nth-of-type(1) strong').textContent = form.elements['orderNumber'].value;
             document.querySelector('.order-information p:nth-of-type(2) strong').textContent = form.elements['userID'].value;
