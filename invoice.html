@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Theme Invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0 auto;
+            background-color: #141414;
+            background-image: linear-gradient(180deg, rgba(255,255,255,0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: animateBackground 10s linear infinite;
+        }
+
+        @keyframes animateBackground {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+            100% {
+                background-position: 50px 50px, 50px 50px;
+            }
+        }
+
+        .m {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 20px;
+            width: 90%;
+            max-width: 600px;
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px #50ff00;
+            z-index: 10;
+        }
+
+        .invoice-container {
+            background: #1c1c1c;
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px #50ff00;
+            overflow: hidden;
+            position: relative;
+            display: none; 
+        }
+
+        .company-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .company-logo img {
+            width: 150px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #50ff00;
+        }
+
+        .company-details {
+            margin-top: 10px;
+        }
+
+        .company-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-header h1 {
+            font-size: 24px;
+            margin: 0;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #50ff00, 0 0 20px #50ff00;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #50ff00, 0 0 20px #50ff00, 0 0 30px #50ff00, 0 0 40px #50ff00;
+            }
+            to {
+                text-shadow: 0 0 20px #50ff00, 0 0 30px #50ff00, 0 0 40px #50ff00, 0 0 50px #50ff00;
+            }
+        }
+
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+
+        .invoice-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .invoice-details th, .invoice-details td {
+            padding: 10px;
+            border-bottom: 1px solid #50ff00;
+        }
+
+        .invoice-details th {
+            background-color: #292929;
+            color: #50ff00;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .invoice-details tr:hover {
+            background-color: #50ff00;
+            transition: background-color 0.3s ease;
+        }
+
+        .invoice-total {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #50ff00;
+        }
+
+        .neon-border {
+            border: 2px solid;
+            border-image-slice: 1;
+            border-width: 4px;
+            border-image-source: linear-gradient(to left, #50ff00, #50ff00);
+            border-radius: 10px;
+            padding: 15px;
+            animation: neon-border 1.5s ease infinite;
+        }
+
+        @keyframes neon-border {
+            0%, 100% {
+                box-shadow: 0 0 5px #50ff00, 0 0 10px #50ff00, 0 0 15px #50ff00, 0 0 20px #50ff00;
+            }
+            50% {
+                box-shadow: 0 0 10px #50ff00, 0 0 20px #50ff00, 0 0 30px #50ff00, 0 0 40px #50ff00;
+            }
+        }
+
+        .invoice-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .invoice-button button {
+            background: linear-gradient(90deg, #50ff00, #11998e);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 30px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .invoice-button button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .order-information, .customer-details {
+            background-color: #292929;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #50ff00;
+        }
+
+        .order-information p, .customer-details p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #50ff00;
+        }
+
+        .form-container input, .form-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #32e0c4;
+            border-radius: 5px;
+            background: #1c1c1c;
+            color: #fff;
+        }
+
+        .form-container button {
+            background: linear-gradient(90deg, #32e0c4, #11998e);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .dynamic-items-container {
+            margin-top: 20px;
+        }
+
+        .dynamic-item {
+            margin-bottom: 15px;
+            background: #292929;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .dynamic-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .dynamic-item input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #32e0c4;
+            border-radius: 5px;
+            background: #1c1c1c;
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .invoice-container, .form-container {
+                padding: 15px;
+            }
+
+            .invoice-details th, .invoice-details td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .invoice-button button {
+                padding: 8px 20px;
+                font-size: 16px;
+            }
+        }
+
+        #company_name {
+            font-size: 40px;
+            color: #50ff00;
+        }
+
+        #sl {
+            font-size: 19px;
+            color: #00eaff;
+        }
+    </style>
+</head>
+<body>
+    <section class="m">
+        <div class="form-container" id="form-container">
+            <h2>Invoice Form</h2>
+            <form id="invoice-form">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" name="customerName" required>
+
+                <label for="customerEmail">Customer Email:</label>
+                <input type="email" id="customerEmail" name="customerEmail" required>
+
+                <label for="customerAddress">Customer Address:</label>
+                <input type="text" id="customerAddress" name="customerAddress" required>
+
+                <label for="customerPhone">Customer Phone:</label>
+                <input type="text" id="customerPhone" name="customerPhone" required>
+
+                <label for="orderNumber">Order Number:</label>
+                <input type="text" id="orderNumber" name="orderNumber" required>
+
+                <label for="userID">User ID:</label>
+                <input type="text" id="userID" name="userID" required>
+
+                <label for="paymentMethod">Payment Method:</label>
+                <input type="text" id="paymentMethod" name="paymentMethod" required>
+
+                <label for="accountNumber">Account Number:</label>
+                <input type="text" id="accountNumber" name="accountNumber" required>
+
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" required>
+
+                <label for="token">Token:</label>
+                <input type="text" id="token" name="token" required>
+
+                <label for="numItems">Number of Items:</label>
+                <select id="numItems" name="numItems">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+
+                <div id="dynamic-items-container" class="dynamic-items-container"></div>
+
+                <button type="button" onclick="addItemFields()">Add Item</button>
+                <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+            </form>
+        </div>
+
+        <div class="invoice-container" id="invoice-container">
+            <div class="company-header">
+                <div class="company-logo">
+                    <img src="https://i.postimg.cc/xCB0dHGy/b295bb43-9ccd-47e2-aebd-900434a0a0fb.jpg" alt="Company Logo">
+                </div>
+                
+                
+                
+                
+                <div class="company-details">
+                    
+                    <p id="company_name">Your TopUp Center</p>
+                    <p id="sl">Your Best Online Game Partner</p>
+                    <p>Sribordi, Sherpur, Mymensingh, Bangladesh</p>
+                    <p>+880 1781-146747</p>
+                    <p>ffdiamondstorebd@gmail.com</p>
+                    <p>https://yourtopupcenter.github.io/</p>
+                </div>
+            </div>
+
+            <div class="invoice-header">
+                <h1>Invoice</h1>
+            </div>
+            
+            
+            <div class="invoice-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price (BDT)</th>
+                            <th>Quantity</th>
+                            <th>Total (BDT)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoice-items">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
+                <div class="invoice-total">Total Amount: <span id="invoice-total">0 BDT</span></div>
+            </div>
+
+            <div class="order-information">
+                <p>Order Number: <strong></strong></p>
+                <p>User ID: <strong></strong></p>
+                <p>Total Amount: <strong></strong></p>
+                <p>Payment Method: <strong></strong></p>
+                <p>Total Payment: <strong></strong></p>
+                <p>Account Number: <strong></strong></p>
+                <p>Status: <strong></strong></p>
+                <p>Token: <strong></strong></p>
+            </div>
+
+            <div class="customer-details">
+                <p>Customer Name: <strong></strong></p>
+                <p>Customer Email: <strong></strong></p>
+                <p>Customer Address: <strong></strong></p>
+                <p>Customer Phone: <strong></strong></p>
+            </div>
+
+
+            <div class="invoice-button">
+                <button onclick="window.print()">Print Invoice</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function addItemFields() {
+            const numItems = document.getElementById('numItems').value;
+            const container = document.getElementById('dynamic-items-container');
+            container.innerHTML = ''; // Clear existing fields
+
+            for (let i = 0; i < numItems; i++) {
+                container.innerHTML += `
+                    <div class="dynamic-item">
+                        <label for="itemName${i}">Item Name:</label>
+                        <input type="text" id="itemName${i}" class="item-name" name="itemName${i}" required>
+
+                        <label for="itemPrice${i}">Item Price (BDT):</label>
+                        <input type="number" id="itemPrice${i}" class="item-price" name="itemPrice${i}" step="0.01" required>
+
+                        <label for="itemQuantity${i}">Item Quantity:</label>
+                        <input type="number" id="itemQuantity${i}" class="item-quantity" name="itemQuantity${i}" step="1" min="1" required>
+                    </div>
+                `;
+            }
+        }
+
+        function generateInvoice() {
+            const form = document.getElementById('invoice-form');
+            const items = Array.from(document.querySelectorAll('.dynamic-item')).map(item => {
+                const name = item.querySelector('.item-name').value;
+                const price = parseFloat(item.querySelector('.item-price').value);
+                const quantity = parseInt(item.querySelector('.item-quantity').value);
+                return { name, price, quantity, total: price * quantity };
+            });
+
+            const totalPrice = items.reduce((acc, item) => acc + item.total, 0);
+            const invoiceItems = document.getElementById('invoice-items');
+            invoiceItems.innerHTML = ''; // Clear existing items
+
+            items.forEach(item => {
+                invoiceItems.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.price} BDT</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.total} BDT</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('invoice-total').textContent = `${totalPrice} BDT`;
+
+            // Populate additional invoice information
+            document.getElementById('company_name').textContent = form.elements['customerName'].value;
+            document.getElementById('sl').textContent = 'Your Best Online Game Partner'; // This seems static, adjust if needed
+            document.querySelector('.order-information p:nth-of-type(1) strong').textContent = form.elements['orderNumber'].value;
+            document.querySelector('.order-information p:nth-of-type(2) strong').textContent = form.elements['userID'].value;
+            document.querySelector('.order-information p:nth-of-type(3) strong').textContent = `${totalPrice} BDT`;
+            document.querySelector('.order-information p:nth-of-type(4) strong').textContent = form.elements['paymentMethod'].value;
+            document.querySelector('.order-information p:nth-of-type(5) strong').textContent = `${totalPrice} BDT`; // Duplicate total payment, adjust if needed
+            document.querySelector('.order-information p:nth-of-type(6) strong').textContent = form.elements['accountNumber'].value;
+            document.querySelector('.order-information p:nth-of-type(7) strong').textContent = form.elements['status'].value;
+            document.querySelector('.order-information p:nth-of-type(8) strong').textContent = form.elements['token'].value;
+
+            document.querySelector('.customer-details p:nth-of-type(1) strong').textContent = form.elements['customerName'].value;
+            document.querySelector('.customer-details p:nth-of-type(2) strong').textContent = form.elements['customerEmail'].value;
+            document.querySelector('.customer-details p:nth-of-type(3) strong').textContent = form.elements['customerAddress'].value;
+            document.querySelector('.customer-details p:nth-of-type(4) strong').textContent = form.elements['customerPhone'].value;
+
+            // Hide the form and show the invoice
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('invoice-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
